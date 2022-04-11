@@ -22,4 +22,13 @@ public class Profile {
 		return answers.get(criterion.getAnswer().getQuestionText());
 	}
 
+	public boolean matches(Criteria criteria) {
+		
+		for (Criterion criterion : criteria) {
+			if (matches(criterion)) return true;
+		}
+		return false;
+		
+	}
+
 }

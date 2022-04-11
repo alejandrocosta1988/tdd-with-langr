@@ -13,8 +13,8 @@ public class Profile {
 
 	public boolean matches(Criterion criterion) {
 		
-		Answer answer = getMatchingProfileAnswer(criterion);
-		return criterion.getAnswer().match(answer);
+		return criterion.getWeight() == Weight.DontCare || 
+				criterion.getAnswer().match(getMatchingProfileAnswer(criterion));
 		
 	}
 	

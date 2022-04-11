@@ -11,6 +11,7 @@ class ProfileTest {
 	private Profile profile;
 	private BooleanQuestion questionIsThereRelocation;
 	private Answer answerThereIsRelocation;
+	private Answer answerThereIsNotRelocation;
 	
 	@BeforeEach
 	public void createProfile() {
@@ -21,6 +22,7 @@ class ProfileTest {
 	public void createQuestionAndAnswer() {
 		this.questionIsThereRelocation = new BooleanQuestion(1, "Relocation pacakge?");
 		this.answerThereIsRelocation = new Answer(questionIsThereRelocation, Bool.TRUE);
+		this.answerThereIsNotRelocation = new Answer(questionIsThereRelocation, Bool.FALSE);
 	}
 
 	@Test
@@ -38,11 +40,23 @@ class ProfileTest {
 	public void matchesWhenProfileContainsMatchingAnswer() {
 		
 		profile.add(answerThereIsRelocation);
-		Criterion criterion = new Criterion(new Answer(questionIsThereRelocation, Bool.TRUE), Weight.Important);
+		Criterion criterion = new Criterion(answerThereIsRelocation, Weight.Important);
 		
 		boolean result = profile.matches(criterion);
 		
 		assertTrue(result);
+		
+	}
+	
+	@Test
+	public void doesNotMatchWhenNoMatchingAnswer() {
+		
+		profile.add(answerThereIsNotRelocation);
+		Criterion criterion = new Criterion(answerThereIsRelocation, Weight.Important);
+		
+		boolean result = profile.matches(criterion);
+		
+		assertFalse(result);
 		
 	}
 

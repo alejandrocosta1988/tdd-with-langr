@@ -10,7 +10,7 @@ public class Profile {
 
 	public boolean matches(Criterion criterion) {
 		
-		return answer != null;
+		return answer != null && answer.match(criterion.getAnswer());
 		
 	}
 

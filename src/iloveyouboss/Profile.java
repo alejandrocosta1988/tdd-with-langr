@@ -14,7 +14,7 @@ public class Profile {
 	public boolean matches(Criterion criterion) {
 		
 		Answer answer = getMatchingProfileAnswer(criterion);
-		return answer != null && answer.match(criterion.getAnswer());
+		return criterion.getAnswer().match(answer);
 		
 	}
 	

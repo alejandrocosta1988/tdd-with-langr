@@ -38,8 +38,9 @@ public class Answer {
    }
 
    public boolean match(Answer otherAnswer) {
+	   if (otherAnswer == null) return false;
       // ...
-      return question.match(i, otherAnswer.i);
+	   return question.match(i, otherAnswer.i);
    }
    // ...
 
